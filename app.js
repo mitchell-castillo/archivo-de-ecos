@@ -1,4 +1,4 @@
-import {LEVELS,STORAGE_KEY,initial,start,finishPlayback,press,replay,parseProgress,encodeProgress} from './engine.js';
+import {LEVELS,STORAGE_KEY,initial,start,finishPlayback,press,replay,parseProgress,encodeProgress} from './engine.js?v=1.0.1';
 const $=id=>document.getElementById(id);let completed=[],storageOK=true;try{completed=parseProgress(localStorage.getItem(STORAGE_KEY));}catch{storageOK=false;}
 let state=initial(LEVELS.findIndex((_,i)=>!completed.includes(i)));let token=0;
 const labels=['Norte oeste','Norte','Norte este','Oeste','Centro','Este','Sur oeste','Sur','Sur este'];

@@ -11,3 +11,5 @@ test('bad level falls back safely',()=>{for(const i of [-1,6,NaN,'2'])assert.equ
 test('corrupt and foreign progress safe',()=>{for(const raw of [null,'{','null','[]','{"version":2,"completed":[1]}'])assert.deepEqual(parseProgress(raw),[]);});
 test('progress sanitizes duplicates and invalid values',()=>assert.deepEqual(parseProgress('{"version":1,"completed":[2,2,0,-1,9,"1",1.5]}'),[0,2]));
 test('progress roundtrip',()=>assert.deepEqual(parseProgress(encodeProgress([5,0,2])),[0,2,5]));
+
+test('catalogue compatible completed records',()=>{const x=JSON.parse(encodeProgress([0,3]));assert.equal(x.completed[0].bestMoves,3);assert.equal(x.completed[3].bestMoves,4);assert.deepEqual(parseProgress(JSON.stringify(x)),[0,3]);});
